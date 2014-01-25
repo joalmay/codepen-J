@@ -12,6 +12,10 @@ var users = [
 		password: 'gingertastic'
 	},
 	{
+		username: 'aa',
+		password: 'ss'
+	},
+	{
 		username: 'jerry',
 		password: '@#!$%@'
 	}

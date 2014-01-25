@@ -7,7 +7,7 @@ codepen.api.signup(user_object)
 	parameters: user object, which contains properties: name, email, username, password
 	returns: response object
 
-codepen.login(user_object)
+codepen.api.login(user_object)
 	description: to login an existing user
 	parameters: user object, which contains properties: username, password
 	returns: response object
@@ -36,8 +36,8 @@ $('document').ready(function() {
 
 	//Show SignUp
 	$(".signup-form-btn").on("click", function() {
-		$(".login-form").hide();
-		$(".signup-form").show();
+		$(".login-form").slideUp();
+		$(".signup-form").slideDown();
 
 		$(".login-form-btn").removeClass("active");
 		$(".signup-form-btn").addClass("active");
@@ -45,12 +45,42 @@ $('document').ready(function() {
 
 	//Show LogIn
 	$(".login-form-btn").on("click", function() {
-		$(".signup-form").hide();
-		$(".login-form").show();
+		$(".signup-form").slideUp();
+		$(".login-form").slideDown();
 
 		$(".signup-form-btn").removeClass("active");
 		$(".login-form-btn").addClass("active");
 	});
 
+	//Step 2
 
+	//Listen for click on the login button
+	$(".btn-login").on("click", function() {
+
+	//Grab the text from the username field, pass and store in var
+	//instantiate an object with the u / p
+
+		var user = $("#login-username-field").val();
+		var pass = $("#login-password-field").val();
+		
+		var user = {
+			username: user,
+			password: pass
+		};
+
+	    //console.log("User", user);
+
+		//Call the login method and pass it our previosly insitantiated object an handle the response
+
+		var res = codepen.api.login(user);
+
+		//console.log(codepen.api.login(user));
+
+		if (res.success) {
+			console.log("Welcome: "+user.username);
+		} else {
+			console.log(res.error);
+		}
+
+	});
 });
