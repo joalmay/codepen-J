@@ -31,27 +31,28 @@ Reponse Objects:
 
 $('document').ready(function() {
 
-	codepen.objects.User =  
-	{
+	codepen.objects.User =  {
 		name: null,
 		email: null,
 		username: null,
 		password: null,
 		is_logged_in: false
 	}
-/*	
+		//Extend Class
 
-		...: false,
-		error: ''
-	
+	var NewUser = Object.create(codepen.objects.User, {
+		firstname: {
+			writable: true,
+			enumerable: true,
+			value: ''
+		},
 
-	var NewUser = Object.create(codepen.objects.user, {
-		firstname}
-*/
-
-
-
-
+		lastname: {
+			writable: true,
+			enumerable: true,
+			value: ''
+		}
+	});
 
 	//Hide SignUp
 	$(".signup-form").hide();
@@ -122,6 +123,7 @@ $('document').ready(function() {
 
 			if (res.success) {
 				$(".signup-form .form-feedback").html("Welcome " + newuser.name+ "!!");
+				newuser.is_logged_in=true;
 			} else {
 				$(".signup-form .form-feedback").html(res.error);
 			}
