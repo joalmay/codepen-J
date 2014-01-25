@@ -114,7 +114,8 @@ $('document').ready(function() {
 
 		$(".btn-signup").on("click", function() {
 			var newuser = {};
-			newuser.name = $("#signup-name-field").val();
+			newuser.firstname = $("#signup-name-field").val();
+			newuser.lastname = $("#signup-lastname-field").val();
 			newuser.email = $("#signup-email-field").val();
 			newuser.username = $("#signup-username-field").val();
 			newuser.password = $("#signup-password-field").val();
@@ -122,7 +123,7 @@ $('document').ready(function() {
 			var res= codepen.api.signup(newuser);
 
 			if (res.success) {
-				$(".signup-form .form-feedback").html("Welcome " + newuser.name+ "!!");
+				$(".signup-form .form-feedback").html("Welcome " + newuser.firstname+ "!!");
 				newuser.is_logged_in=true;
 			} else {
 				$(".signup-form .form-feedback").html(res.error);
