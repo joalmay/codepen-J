@@ -31,6 +31,28 @@ Reponse Objects:
 
 $('document').ready(function() {
 
+	codepen.objects.User =  
+	{
+		name: null,
+		email: null,
+		username: null,
+		password: null,
+		is_logged_in: false
+	}
+/*	
+
+		...: false,
+		error: ''
+	
+
+	var NewUser = Object.create(codepen.objects.user, {
+		firstname}
+*/
+
+
+
+
+
 	//Hide SignUp
 	$(".signup-form").hide();
 
@@ -78,9 +100,31 @@ $('document').ready(function() {
 
 		if (res.success) {
 			console.log("Welcome: "+user.username);
+			$(".login-form .form-feedback").html("Welcome " + user.username+ "!!");
 		} else {
-			console.log(res.error);
-		}
+			$(".login-form .form-feedback").html(res.error + "-> User: " + user.username + "/******");
+			console.log(res.error + "->" + user+ " / "+ pass);
 
+			//Clear Inputs
+			$("#login-username-field").val("");
+			$("#login-password-field").val("");
+		}
 	});
+
+		$(".btn-signup").on("click", function() {
+			var newuser = {};
+			newuser.name = $("#signup-name-field").val();
+			newuser.email = $("#signup-email-field").val();
+			newuser.username = $("#signup-username-field").val();
+			newuser.password = $("#signup-password-field").val();
+
+			var res= codepen.api.signup(newuser);
+
+			if (res.success) {
+				$(".signup-form .form-feedback").html("Welcome " + newuser.name+ "!!");
+			} else {
+				$(".signup-form .form-feedback").html(res.error);
+			}
+
+		});
 });
