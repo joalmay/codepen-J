@@ -31,6 +31,26 @@ Reponse Objects:
 
 $('document').ready(function() {
 
-	//put code here
+	//Hide SignUp
+	$(".signup-form").hide();
+
+	//Show SignUp
+	$(".signup-form-btn").on("click", function() {
+		$(".login-form").hide();
+		$(".signup-form").show();
+
+		$(".login-form-btn").removeClass("active");
+		$(".signup-form-btn").addClass("active");
+	});
+
+	//Show LogIn
+	$(".login-form-btn").on("click", function() {
+		$(".signup-form").hide();
+		$(".login-form").show();
+
+		$(".signup-form-btn").removeClass("active");
+		$(".login-form-btn").addClass("active");
+	});
+
 
 });
